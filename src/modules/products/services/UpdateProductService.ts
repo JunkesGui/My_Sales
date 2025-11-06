@@ -1,7 +1,6 @@
 import AppError from "@shared/errors/AppError";
 import { ProductsRepositories } from "../database/repositories/ProductsRepositories";
 import { Product } from "../database/entities/Product";
-import { ObjectLiteral } from "node_modules/typeorm/common/ObjectLiteral";
 
 interface IUpdateProduct{
   id: string;
@@ -11,7 +10,7 @@ interface IUpdateProduct{
 }
 
 export default class UpdateProductService{
-  async execute({id, name, price, quantity}: IUpdateProduct): Promise<ObjectLiteral>{
+  async execute({id, name, price, quantity}: IUpdateProduct): Promise<Product>{
     const product = await ProductsRepositories.findById(id)
 
     if(!product){

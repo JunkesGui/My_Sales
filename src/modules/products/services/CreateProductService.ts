@@ -1,7 +1,6 @@
 import AppError from "@shared/errors/AppError";
 import { ProductsRepositories } from "../database/repositories/ProductsRepositories";
 import { Product } from "../database/entities/Product";
-import { ObjectLiteral } from "node_modules/typeorm/common/ObjectLiteral";
 
 interface ICreateProduct{
   name: string,
@@ -10,7 +9,7 @@ interface ICreateProduct{
 }
 
 export default class CreateProductService{
-  async execute({name, price, quantity}: ICreateProduct): Promise<ObjectLiteral>{
+  async execute({name, price, quantity}: ICreateProduct): Promise<Product>{
     const productExists = await ProductsRepositories.findByName(name)
 
     if (productExists){
