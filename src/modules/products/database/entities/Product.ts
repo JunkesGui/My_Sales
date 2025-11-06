@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "node_modules/typeorm/index";
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity('products')
 export class Product{
