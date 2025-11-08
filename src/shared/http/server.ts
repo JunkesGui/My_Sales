@@ -26,7 +26,7 @@ AppDataSource.initialize().then(async() =>{
 
 
   })
-  // .catch(error =>{
-  //   console.error('Failed to connect to database: ', error)
-  // })
+  .catch(error =>{
+    console.error('Failed to connect to database: ', error)
+  })
 
