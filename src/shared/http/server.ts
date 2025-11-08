@@ -1,11 +1,12 @@
+import 'reflect-metadata';
+import 'express-async-errors';
 import express from 'express';
 import cors from 'cors';
-import routes from './routes/index';
-import "express-async-errors";
-require('reflect-metadata');
-import ErrorHandlerMiddleware from '../middlewares/ErrorHandlerMiddleware';
-import { AppDataSource } from '../typeorm/data-source';
 import { errors } from 'celebrate';
+
+import routes from './routes';
+import ErrorHandlerMiddleware from '@shared/middlewares/ErrorHandlerMiddleware';
+import { AppDataSource } from '@shared/typeorm/data-source';
 
 AppDataSource.initialize().then(async() =>{
   const app = express();
@@ -24,7 +25,8 @@ AppDataSource.initialize().then(async() =>{
   });
 
 
-  }).catch(error =>{
-    console.error('Failed to connect to database: ', error)
   })
+  // .catch(error =>{
+  //   console.error('Failed to connect to database: ', error)
+  // })
 
