@@ -1,9 +1,9 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('users')
-export class User {
+export class User{
   @PrimaryGeneratedColumn()
-  id: number
+  id: number;
 
   @Column({type: 'text'})
   name: string;
@@ -12,7 +12,7 @@ export class User {
   email: string;
 
   @Column({type: 'text'})
-  passord: string;
+  password: string;
 
   @Column({type: 'text'})
   avatar: string;
@@ -22,4 +22,5 @@ export class User {
 
   @UpdateDateColumn({type: 'timestamp'})
   updated_at: Date;
+
 }
