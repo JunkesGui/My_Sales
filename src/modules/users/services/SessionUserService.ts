@@ -2,7 +2,7 @@ import AppError from "@shared/errors/AppError"
 import { User } from "../database/entities/User"
 import { UserRepositories } from "../database/repositories/UsersRepositories"
 import { compare } from "bcrypt"
-import { sign } from "jsonwebtoken"
+import { Secret, sign } from "jsonwebtoken"
 
 interface ISessionUser{
   email: string,
@@ -29,7 +29,7 @@ export default class SessionUserService {
     }
 
     const token = sign({},
-       process.env.APP_SECRET as string,
+       process.env.APP_SECRET as Secret,
        {subject: String(user.id), expiresIn: '1d'})
 
   return {
