@@ -4,6 +4,7 @@
 build/
 temp/
 .env
+/uploads
 coverage
 ormconfig.json
 dist
