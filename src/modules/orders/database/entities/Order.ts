@@ -1,5 +1,6 @@
 import { Customer } from "@modules/customers/database/entities/Customer";
-import { CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { OrdersProducts } from "./OrderProducts";
 
 @Entity('orders')
 export class Order {
@@ -10,9 +11,12 @@ export class Order {
   @JoinColumn({name: 'customer_id'})
   customer: Customer
 
-  @CreateDateColumn()
+  @OneToMany(() => OrdersProducts, order_products => order_products.order, {cascade: true})
+  order_products: OrdersProducts[]
+
+  @CreateDateColumn({type: 'timestamp'})
   created_at: Date
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({type: 'timestamp'})
   updated_at: Date
 }

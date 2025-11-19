@@ -5,16 +5,16 @@ export default class UserToken{
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({type: 'text'})
   @Generated('uuid')
   token: string;
 
-  @Column()
+  @Column({type: 'number'})
   user_id: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({type: 'timestamp'})
   created_at: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({type: 'timestamp'})
   updated_at: Date;
 }
