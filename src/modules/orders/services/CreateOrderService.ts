@@ -28,16 +28,16 @@ export default class CreateOrderService{
 
     const checkInexistentProducts = products.filter(product => !productIds.includes(product.id))
 
-    if (checkInexistentProducts.length){
-      throw new AppError(`Product ${checkInexistentProducts[0]} not found`, 404)
+    if (!checkInexistentProducts.length){
+      throw new AppError(`Product not found`, 404)
     }
 
     const quantityAvailable = products.filter(product => {
       existentProducts.filter(p => p.id === product.id)[0].quantity < product.quantity
     })
 
-    if (quantityAvailable.length){
-      throw new AppError (`The quantity ${quantityAvailable[0].quantity} is not available for ${quantityAvailable[0].id}`, 409)
+    if (!quantityAvailable.length){
+      throw new AppError (`The quantity is not available for a product`, 409)
     }
 
     const serializedProducts = products.map(p => ({
