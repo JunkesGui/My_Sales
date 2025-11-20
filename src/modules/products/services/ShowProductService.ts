@@ -3,7 +3,7 @@ import { ProductsRepositories } from "../database/repositories/ProductsRepositor
 import { Product } from "../database/entities/Product";
 
 interface IShowProduct{
-  id: string;
+  id: number;
 }
 
 export default class ShowProductService {

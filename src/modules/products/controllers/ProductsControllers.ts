@@ -13,9 +13,9 @@ export default class ProductControllers{
   }
 
   async show(request: Request, response: Response): Promise<Response>{
-    const { id } = request.params;
+    const id = Number(request.params.id);
     const showProductService = new ShowProductService();
-    const product = await showProductService.execute({ id });
+    const product = await showProductService.execute({id})
     return response.json(product)
   }
 
@@ -31,7 +31,7 @@ export default class ProductControllers{
   }
 
   async update(request: Request, response: Response): Promise<Response>{
-    const { id } = request.params;
+    const id = Number(request.params.id);
     const { name, price, quantity } = request.body;
     const updateProductService = new UpdateProductService();
     const product = await updateProductService.execute({
@@ -44,7 +44,7 @@ export default class ProductControllers{
   }
 
   async delete(request: Request, response: Response): Promise<Response>{
-    const { id } = request.params;
+    const id = Number(request.params.id);
     const deleteProductService = new DeleteProductService();
     await deleteProductService.execute({ id });
     return response.status(204).send([]);

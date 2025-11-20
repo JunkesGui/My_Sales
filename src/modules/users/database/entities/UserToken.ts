@@ -9,7 +9,7 @@ export default class UserToken{
   @Generated('uuid')
   token: string;
 
-  @Column({type: 'number'})
+  @Column({type: 'int'})
   user_id: number;
 
   @CreateDateColumn({type: 'timestamp'})

@@ -2,7 +2,7 @@ import AppError from "@shared/errors/AppError";
 import { ProductsRepositories } from "../database/repositories/ProductsRepositories";
 
 interface IDeleteProduct{
-  id: string;
+  id: number;
 }
 
 export default class DeleteProductService{

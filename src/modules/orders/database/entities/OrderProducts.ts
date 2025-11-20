@@ -11,9 +11,15 @@ export class OrdersProducts{
   @JoinColumn({name: 'order_id'})
   order: Order
 
+  @Column({type: 'int'})
+  order_id: number
+
   @ManyToOne(() => Product, product => product.order_products)
   @JoinColumn({name: 'product_id'})
   product: Product
+
+  @Column({type: 'int'})
+  product_id: number
 
   @Column({type: 'decimal'})
   price: number

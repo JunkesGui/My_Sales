@@ -4,7 +4,7 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 @Entity('products')
 export class Product{
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
   @Column({type: 'text'})
   name: string;
