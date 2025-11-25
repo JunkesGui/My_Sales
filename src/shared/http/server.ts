@@ -7,6 +7,7 @@ import { errors } from 'celebrate';
 import routes from './routes';
 import ErrorHandlerMiddleware from '@shared/middlewares/ErrorHandlerMiddleware';
 import { AppDataSource } from '@shared/typeorm/data-source';
+import rateLimiter from '@shared/middlewares/rateLimiter';
 
 AppDataSource.initialize().then(async() =>{
   const app = express();
@@ -14,6 +15,7 @@ AppDataSource.initialize().then(async() =>{
   app.use(cors());
   app.use(express.json());
 
+  app.use(rateLimiter.execute)
   app.use(routes);
   app.use(errors());
   app.use(ErrorHandlerMiddleware.handleError)
