@@ -1,8 +1,8 @@
 import { customerRepositories } from "@modules/customers/infra/database/repositories/CustomerRepositories";
 import { Order } from "../infra/database/entities/Order";
 import AppError from "@shared/errors/AppError";
-import { Product } from "@modules/products/database/entities/Product";
-import { ProductsRepositories } from "@modules/products/database/repositories/ProductsRepositories";
+import { Product } from "@modules/products/infra/database/entities/Product";
+import { ProductsRepositories } from "@modules/products/infra/database/repositories/ProductsRepositories";
 import { orderRepositories } from "../infra/database/repositories/OrderRepositories";
 
 interface ICreateOrder{
