@@ -6,7 +6,7 @@ import express, { Router } from 'express';
 import uploadConfig from '@config/upload'
 import passwordRouter from '@modules/users/routes/PasswordRoutes';
 import profileRouter from '@modules/users/routes/ProfileRoutes';
-import customerRouter from '@modules/customers/routes/CustomerRoutes';
+import customerRouter from '@modules/customers/infra/http/routes/CustomerRoutes';
 import orderRouter from '@modules/orders/routes/OrdersRoutes';
 
 const routes = Router();
