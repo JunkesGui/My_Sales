@@ -1,6 +1,6 @@
 import ShowCustomerService from '@modules/customers/services/ShowCustomerService'
+import CreateOrderService from '@modules/orders/services/CreateOrderService'
 import { Request, Response } from 'express'
-import CreateOrderService from '../services/CreateOrderService'
 
 export default class OrdersController {
   async show(request: Request, response: Response): Promise<Response>{
