@@ -1,13 +1,10 @@
 import AppError from "@shared/errors/AppError";
 import { Customer } from "../infra/database/entities/Customer";
 import { customerRepositories } from "../infra/database/repositories/CustomerRepositories";
-
-interface IShowCustomer{
-  id: number
-}
+import { ICustomerId } from "../domain/models/ICustomerId";
 
 export default class ShowCustomerService{
-  async execute({ id }: IShowCustomer): Promise<Customer>{
+  async execute({ id }: ICustomerId): Promise<Customer>{
     const customer = await customerRepositories.findById(id)
 
     if (!customer){

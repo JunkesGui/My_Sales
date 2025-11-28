@@ -1,12 +1,9 @@
 import AppError from "@shared/errors/AppError"
 import { customerRepositories } from "../infra/database/repositories/CustomerRepositories"
-
-interface IDeleteCustomer{
-  id: number
-}
+import { ICustomerId } from "../domain/models/ICustomerId"
 
 export default class DeleteCustomerService{
-  async execute({ id }: IDeleteCustomer): Promise<void>{
+  async execute({ id }: ICustomerId): Promise<void>{
     const customer = await customerRepositories.findById(id)
 
     if(!customer){
