@@ -1,9 +1,10 @@
 import { Customer } from "@modules/customers/infra/database/entities/Customer";
 import { CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { OrdersProducts } from "./OrderProducts";
+import { IOrder } from "@modules/orders/domain/models/IOrder";
 
 @Entity('orders')
-export class Order {
+export class Order implements IOrder {
   @PrimaryGeneratedColumn()
   id: number
 
