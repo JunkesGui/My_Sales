@@ -2,10 +2,7 @@ import AppError from "@shared/errors/AppError"
 import { UserRepositories } from "../infra/database/repositories/UsersRepositories"
 import { UserTokensRepositories } from "../infra/database/repositories/UserTokensRepositores"
 import { sendEmail } from "@config/email"
-
-interface IForgotPassword{
-  email: string
-}
+import { IForgotPassword } from "../domain/models/IForgotPassword"
 
 export default class SendForgotPasswordService{
   async execute({email}: IForgotPassword): Promise<void>{

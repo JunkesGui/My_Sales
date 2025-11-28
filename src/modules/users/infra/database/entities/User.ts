@@ -1,8 +1,9 @@
+import { IUser } from "@modules/users/domain/models/IUser";
 import { Exclude, Expose } from "class-transformer";
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('users')
-export class User{
+export class User implements IUser{
   @PrimaryGeneratedColumn()
   id: number;
 

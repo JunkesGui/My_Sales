@@ -1,18 +1,9 @@
 import AppError from "@shared/errors/AppError"
-import { User } from "../infra/database/entities/User"
 import { UserRepositories } from "../infra/database/repositories/UsersRepositories"
 import { compare } from "bcrypt"
 import { Secret, sign } from "jsonwebtoken"
-
-interface ISessionUser{
-  email: string,
-  password: string
-}
-
-interface ISessionResponse{
-  user: User,
-  token: string
-}
+import { ISessionUser } from "../domain/models/ISessionUser"
+import { ISessionResponse } from "../domain/models/ISessionResponse"
 
 export default class SessionUserService {
   async execute({email, password}: ISessionUser): Promise<ISessionResponse>{
@@ -33,10 +24,7 @@ export default class SessionUserService {
        {subject: String(user.id), expiresIn: '1d'})
 
   return {
-    user,
-    token
+    user, token
   }
   }
-
-
 }
