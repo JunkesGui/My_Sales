@@ -1,13 +1,10 @@
 import AppError from "@shared/errors/AppError";
 import { ProductsRepositories } from "../infra/database/repositories/ProductsRepositories";
 import RedisCache from "@shared/cache/RedisCache";
-
-interface IDeleteProduct{
-  id: number;
-}
+import { IProductId } from "../domain/models/IProductId";
 
 export default class DeleteProductService{
-  async execute({id}: IDeleteProduct): Promise<void>{
+  async execute({id}: IProductId): Promise<void>{
     const redisCache = new RedisCache
 
     const product = await ProductsRepositories.findById(id)

@@ -1,8 +1,9 @@
 import { OrdersProducts } from "@modules/orders/infra/database/entities/OrderProducts";
+import { IProduct } from "@modules/products/domain/models/IProduct";
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
 
 @Entity('products')
-export class Product{
+export class Product implements IProduct{
   @PrimaryGeneratedColumn()
   id: number;
 
