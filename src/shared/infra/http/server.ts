@@ -3,11 +3,11 @@ import 'express-async-errors';
 import express from 'express';
 import cors from 'cors';
 import { errors } from 'celebrate';
-
 import routes from './routes';
 import ErrorHandlerMiddleware from '@shared/middlewares/ErrorHandlerMiddleware';
 import { AppDataSource } from '@shared/infra/typeorm/data-source';
-import rateLimiter from '@shared/middlewares/rateLimiter';
+import rateLimiter from '@shared/middlewares/RateLimiter';
+import '@shared/containers'
 
 AppDataSource.initialize().then(async() =>{
   const app = express();

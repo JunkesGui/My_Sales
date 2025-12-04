@@ -4,12 +4,13 @@ import ShowCustomerService from "../../../services/ShowCustomerService";
 import CreateCustomerService from "../../../services/CreateCustomerService";
 import UpdateCustomerService from "../../../services/UpdateCustomerService";
 import DeleteCustomerService from "../../../services/DeleteCustomerService";
+import containers from "@shared/containers";
 
 export default class CustomerControllers{
   async index(request: Request, response: Response): Promise<Response>{
     const page = parseInt(request.query.page as string) || 1;
     const limit = parseInt(request.query.limit as string) || 10;
-    const listCustomers = new ListCustomerService()
+    const listCustomers = containers.resolve(ListCustomerService)
     const customers = await listCustomers.execute(page, limit)
 
     return response.json(customers)
@@ -25,7 +26,7 @@ export default class CustomerControllers{
 
   async create(request: Request, response: Response): Promise<Response>{
     const { name, email } = request.body
-    const createCustomer = new CreateCustomerService()
+    const createCustomer = containers.resolve(CreateCustomerService)
     const customer = await createCustomer.execute({ name, email })
 
     return response.json(customer)
