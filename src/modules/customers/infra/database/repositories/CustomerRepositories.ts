@@ -58,15 +58,29 @@ export default class CustomerRepositories implements ICustomerRepositories {
     return;
   }
 
-  async findAndCount({
-    take,
-    skip,
-  }: Pagination): Promise<[ICustomer[], number]> {
+  async findAndCount({ take, skip }: Pagination): Promise<[ICustomer[], number]> {
     const [customers, total] = await this.ormRepository.findAndCount({
       take,
       skip,
     });
 
     return [customers, total];
+  }
+
+  async findAll({ page, skip, take }: SearchParams): Promise<ICustomerPaginate> {
+    const [customers, count] = await this.ormRepository
+      .createQueryBuilder()
+      .skip(skip)
+      .take(take)
+      .getManyAndCount();
+
+    const result = {
+      per_page: take,
+      total: count,
+      current_page: page,
+      data: customers,
+    };
+
+    return result as unknown as ICustomerPaginate;
   }
 }

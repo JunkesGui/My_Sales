@@ -17,4 +17,5 @@ export interface ICustomerRepositories {
   findById(id: number): Promise<ICustomer | null>;
   findAndCount(pagination: Pagination): Promise<[ICustomer[], number]>;
   findByName(name: string): Promise<ICustomer | null>;
+  findAll(serachParams: SearchParams): Promise<ICustomerPaginate>;
 }
