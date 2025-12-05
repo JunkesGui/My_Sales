@@ -18,7 +18,7 @@ export default class CustomerControllers{
 
   async show(request: Request, response: Response): Promise<Response>{
     const id = Number(request.params.id)
-    const showCustomer = new ShowCustomerService()
+    const showCustomer = containers.resolve(ShowCustomerService)
     const customer = await showCustomer.execute({id})
 
     return response.json(customer)
@@ -35,7 +35,7 @@ export default class CustomerControllers{
   async update(request: Request, response: Response): Promise<Response>{
     const { name, email } = request.body
     const id = Number(request.params.id)
-    const updateCustomer = new UpdateCustomerService()
+    const updateCustomer = containers.resolve(UpdateCustomerService)
     const customer = await updateCustomer.execute({ id, name, email })
 
     return response.json(customer)
