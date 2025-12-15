@@ -3,11 +3,7 @@ import { ICreateCustomer } from "../models/ICreateCustomer";
 import { ICustomer } from "../models/ICustomer";
 import { ICustomerPaginate } from "../models/ICustomerPaginate";
 import { Customer } from "@modules/customers/infra/database/entities/Customer";
-
-export interface Pagination{
-  take: number,
-  skip: number
-}
+import { Pagination } from "@shared/interfaces/Pagination";
 
 export interface ICustomerRepositories {
   findByEmail(email: string): Promise<ICustomer | null>;

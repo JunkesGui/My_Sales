@@ -1,11 +1,12 @@
 import { AppDataSource } from "@shared/infra/typeorm/data-source";
 import { Customer } from "../entities/Customer";
-import { ICustomerRepositories, Pagination } from "@modules/customers/domain/repositories/ICustomerRepositories";
+import { ICustomerRepositories } from "@modules/customers/domain/repositories/ICustomerRepositories";
 import { Repository } from "typeorm";
 import { ICustomer } from "@modules/customers/domain/models/ICustomer";
 import { ICreateCustomer } from "@modules/customers/domain/models/ICreateCustomer";
 import { SearchParams } from "@shared/interfaces/SearchParams";
 import { ICustomerPaginate } from "@modules/customers/domain/models/ICustomerPaginate";
+import { Pagination } from "@shared/interfaces/Pagination";
 
 export default class CustomerRepositories implements ICustomerRepositories {
   private ormRepository: Repository<Customer>;
