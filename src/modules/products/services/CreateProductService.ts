@@ -1,24 +1,26 @@
 import AppError from "@shared/errors/AppError";
-import { ProductsRepositories } from "../infra/database/repositories/ProductsRepositories";
 import { Product } from "../infra/database/entities/Product";
 import RedisCache from "@shared/cache/RedisCache";
 import { ICreateProduct } from "../domain/models/ICreateProduct";
+import { inject, injectable } from "tsyringe";
+import { IProductRepositories } from "../domain/repositories/IProductRepositories";
 
+@injectable()
 export default class CreateProductService{
+  constructor(@inject('ProductRepositories') private readonly productRepositories: IProductRepositories){}
+
   async execute({name, price, quantity}: ICreateProduct): Promise<Product>{
     const redisCache = new RedisCache
 
-    const productExists = await ProductsRepositories.findByName(name)
+    const productExists = await this.productRepositories.findByName(name)
 
     if (productExists){
       throw new AppError('There is already a product with this name', 409);
     }
 
-    const product = ProductsRepositories.create({
+    const product = this.productRepositories.create({
       name, price, quantity
     });
-
-    await ProductsRepositories.save(product)
 
     await redisCache.invalidate('api-mysales-PRODUCT-LIST')
 
