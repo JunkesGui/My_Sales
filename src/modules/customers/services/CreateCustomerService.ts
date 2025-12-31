@@ -9,7 +9,7 @@ import RedisCache from "@shared/cache/RedisCache";
 export default class CreateCustomerService{
   constructor(@inject('CustomerRepositories') private readonly customerRepositories: ICustomerRepositories){}
 
-  public async execute({ name, email }: ICreateCustomer): Promise<Customer>{
+  async execute({ name, email }: ICreateCustomer): Promise<Customer>{
     const redisCache = new RedisCache()
 
     const emailExists = await this.customerRepositories.findByEmail(email)

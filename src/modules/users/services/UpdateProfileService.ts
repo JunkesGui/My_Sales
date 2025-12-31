@@ -1,19 +1,23 @@
 import AppError from "@shared/errors/AppError"
-import { UserRepositories } from "../infra/database/repositories/UsersRepositories"
-import { User } from "../infra/database/entities/User"
 import { compare, hash } from "bcrypt"
 import { IUpdateProfile } from "../domain/models/IUpdateProfile"
+import { inject, injectable } from "tsyringe"
+import { IUserRepositories } from "../domain/repositories/IUserRepositories"
+import { IUser } from "../domain/models/IUser"
 
+@injectable()
 export default class UpdateProfileService{
-  async execute({user_id, name, email, password, old_password}: IUpdateProfile): Promise< User >{
-    const user = await UserRepositories.findById(user_id)
+  constructor(@inject('UserRepositories') private readonly userRepositories: IUserRepositories){}
+
+  async execute({user_id, name, email, password, old_password}: IUpdateProfile): Promise<IUser>{
+    const user = await this.userRepositories.findById(user_id)
 
     if(!user){
       throw new AppError('User not found', 404)
     }
 
     if (email){
-      const userUpdateEmail = await UserRepositories.findByEmail(email)
+      const userUpdateEmail = await this.userRepositories.findByEmail(email)
 
       if (userUpdateEmail){
         throw new AppError('This email is already being used', 409)
@@ -39,7 +43,7 @@ export default class UpdateProfileService{
       user.name = name
     }
 
-    await UserRepositories.save(user)
+    await this.userRepositories.save(user)
 
     return user
   }

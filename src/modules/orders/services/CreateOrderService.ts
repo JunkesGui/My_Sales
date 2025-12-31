@@ -71,9 +71,6 @@ export default class CreateOrderService{
     quantity: existentProducts.filter(prod => prod.id === p.id)[0].quantity - p.quantity
   }))
 
-  console.log(order_products)
-  console.log(updateProductQuantity)
-
   await this.productRepositories.updateQuantity(updateProductQuantity)
 
   return order

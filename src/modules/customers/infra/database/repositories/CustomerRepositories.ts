@@ -16,25 +16,19 @@ export default class CustomerRepositories implements ICustomerRepositories {
   }
 
   async findByName(name: string): Promise<ICustomer | null> {
-    const customer = await this.ormRepository.findOneBy({
-      name,
-    });
+    const customer = await this.ormRepository.findOneBy({ name });
 
     return customer;
   }
 
   async findById(id: number): Promise<ICustomer | null> {
-    const customer = await this.ormRepository.findOneBy({
-      id,
-    });
+    const customer = await this.ormRepository.findOneBy({ id });
 
     return customer;
   }
 
   async findByEmail(email: string): Promise<ICustomer | null> {
-    const customer = await this.ormRepository.findOneBy({
-      email,
-    });
+    const customer = await this.ormRepository.findOneBy({ email });
 
     return customer;
   }
