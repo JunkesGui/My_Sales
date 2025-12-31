@@ -1,7 +1,7 @@
 import { AppDataSource } from "@shared/infra/typeorm/data-source";
 import { Product } from "../entities/Product";
 import { In, Repository } from 'typeorm'
-import { IProductRepositories } from "@modules/products/domain/repositories/IProductRepositories";
+import { IFindProducts, IProductRepositories } from "@modules/products/domain/repositories/IProductRepositories";
 import { IProduct } from "@modules/products/domain/models/IProduct";
 import { ICreateProduct } from "@modules/products/domain/models/ICreateProduct";
 import { Pagination } from "@shared/interfaces/Pagination";
@@ -45,6 +45,12 @@ export default class ProductsRepositories implements IProductRepositories{
     return product;
   }
 
+  async updateQuantity(products: IFindProducts[]): Promise<void>{
+    await this.ormRepository.save(products)
+
+    return;
+  }
+
   async remove(product: IProduct): Promise<void>{
     await this.ormRepository.remove(product);
 
@@ -76,4 +82,11 @@ export default class ProductsRepositories implements IProductRepositories{
 
     return result as unknown as IProductPaginate;
   }
+
+    async findAllById(products: IFindProducts[]): Promise<IProduct[] | null>{
+      const productIds = products.map(product => product.id)
+      const existentProducts = await this.ormRepository.find({where: { id: In(productIds) }})
+
+      return existentProducts
+    }
 }

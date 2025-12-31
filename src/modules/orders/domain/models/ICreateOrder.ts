@@ -1,6 +1,12 @@
-import { Product } from "@modules/products/infra/database/entities/Product";
+import { ICustomer } from "@modules/customers/domain/models/ICustomer";
+import { Customer } from "@modules/customers/infra/database/entities/Customer";
+
+interface IProduct {
+  id: number;
+  quantity: number;
+}
 
 export interface ICreateOrder{
-  customer_id: number,
-  products: Product[]
+  customer: Customer,
+  products: IProduct[]
 }
