@@ -1,16 +1,27 @@
+import AppError from "@shared/errors/AppError";
+import { customerMock } from "../domain/factories/customerFactory";
 import DummyCustomerRepositories from "../domain/repositories/dummies/DummyCustomerRepositories"
 import CreateCustomerService from "./CreateCustomerService";
 
-describe('CreateCustomerService', () =>{
+let dummyCustomerRepositories: DummyCustomerRepositories;
+let createCustomer: CreateCustomerService;
+
+describe('CreateCustomerService', () => {
+  beforeEach(() => {
+    dummyCustomerRepositories = new DummyCustomerRepositories();
+    createCustomer = new CreateCustomerService(dummyCustomerRepositories);
+  });
+
   it('Should be able to create Customer', async () =>{
-    const dummyCustomerRepositories = new DummyCustomerRepositories();
-    const createCustomer = new CreateCustomerService(dummyCustomerRepositories);
+    const customer = await createCustomer.execute(customerMock)
 
-    const customer = await createCustomer.execute({
-      name: 'foo',
-      email: 'foo@mail.com',
-    })
+    expect(customer.name).toBe('Foo')
+  });
 
-    expect(customer.name).toBe('foo')
+  it('Should not be able to create a Customer if the email already exists', async () =>{
+    await createCustomer.execute(customerMock);
+
+    await expect(createCustomer.execute(customerMock)).rejects.toBeInstanceOf(AppError)
   })
+
 })
