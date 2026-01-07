@@ -15,7 +15,7 @@ describe('CreateCustomerService', () => {
   it('Should be able to create Customer', async () =>{
     const customer = await createCustomer.execute(customerMock)
 
-    expect(customer.name).toBe('Foo')
+    expect(customer.name).toBe(customerMock)
   });
 
   it('Should not be able to create a Customer if the email already exists', async () =>{
