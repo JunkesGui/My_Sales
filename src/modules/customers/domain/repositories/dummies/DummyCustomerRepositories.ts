@@ -33,7 +33,7 @@ export default class DummyCustomerRepositories implements ICustomerRepositories{
   async remove(customer: Customer): Promise<void>{
     const index = this.customers.findIndex(findCustomer => findCustomer.id === customer.id)
     if (index !== -1){
-      this.customers.splice(index, -1)
+      this.customers = this.customers.filter((c) => c.id !== index + 1)
     }
   }
 
