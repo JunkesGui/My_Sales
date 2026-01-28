@@ -2,7 +2,6 @@ import { SearchParams } from "@shared/interfaces/SearchParams";
 import { ICreateCustomer } from "../models/ICreateCustomer";
 import { ICustomer } from "../models/ICustomer";
 import { ICustomerPaginate } from "../models/ICustomerPaginate";
-import { Customer } from "@modules/customers/infra/database/entities/Customer";
 import { Pagination } from "@shared/interfaces/Pagination";
 
 export interface ICustomerRepositories {

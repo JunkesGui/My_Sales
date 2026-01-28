@@ -4,7 +4,7 @@ import { SearchParams } from "@shared/interfaces/SearchParams";
 import { ICreateOrder } from "../../models/ICreateOrder";
 import { IOrderPaginate } from "../../models/IOrderPaginate";
 import { IOrderProduct } from "../../models/IOrderProduct";
-import { IOrderRepositories, Pagination } from "../IOrderRepositories";
+import { IOrderRepositories } from "../IOrderRepositories";
 
 export default class DummyOrderRepositories implements IOrderRepositories{
   private orders: Order[] = [];
@@ -29,7 +29,7 @@ export default class DummyOrderRepositories implements IOrderRepositories{
     return order;
   }
 
-  async findAll({page, skip, take}: SearchParams): Promise<IOrderPaginate> {
+  async findAll({page, take}: SearchParams): Promise<IOrderPaginate> {
     const orders = this.orders
     const count = this.orders.length
 
@@ -49,7 +49,7 @@ export default class DummyOrderRepositories implements IOrderRepositories{
     return order as Order | null
   }
 
-  findAndCount(pagination: Pagination): Promise<[Order[], number]> {
+  findAndCount(): Promise<[Order[], number]> {
     throw new AppError('Funcao nao implementada', 400)
   }
 }

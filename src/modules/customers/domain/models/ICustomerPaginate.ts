@@ -1,4 +1,3 @@
-import { Customer } from "@modules/customers/infra/database/entities/Customer";
 import { ICustomer } from "./ICustomer";
 
 export interface ICustomerPaginate{

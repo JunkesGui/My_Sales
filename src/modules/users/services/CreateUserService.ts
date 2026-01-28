@@ -1,5 +1,4 @@
 import AppError from "@shared/errors/AppError";
-import { User } from "../infra/database/entities/User";
 import { hash } from "bcrypt";
 import { ICreateUser } from "../domain/models/ICreateUser";
 import { inject, injectable } from "tsyringe";

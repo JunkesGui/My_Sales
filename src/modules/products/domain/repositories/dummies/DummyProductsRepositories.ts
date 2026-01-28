@@ -2,7 +2,6 @@ import { ICreateProduct } from "@modules/products/domain/models/ICreateProduct";
 import { IProductPaginate } from "@modules/products/domain/models/IProductPaginate";
 import { IFindProducts, IProductRepositories } from "@modules/products/domain/repositories/IProductRepositories";
 import AppError from "@shared/errors/AppError";
-import { Pagination } from "@shared/interfaces/Pagination";
 import { SearchParams } from "@shared/interfaces/SearchParams";
 import { Product } from "../../../infra/database/entities/Product";
 
@@ -37,7 +36,7 @@ export default class DummyProductsRepositories implements IProductRepositories{
     }
   }
 
-  async findAll({page, skip, take}: SearchParams): Promise<IProductPaginate> {
+  async findAll({page, take}: SearchParams): Promise<IProductPaginate> {
     const products = this.products
     const count = this.products.length
 
@@ -62,11 +61,11 @@ export default class DummyProductsRepositories implements IProductRepositories{
     return product as Product | null
   }
 
-  async findAndCount(pagination: Pagination): Promise<[Product[], number]> {
+  async findAndCount(): Promise<[Product[], number]> {
     throw new AppError('Funcao nao implementada', 400)
   }
 
-  async updateQuantity(products: Product[]): Promise<void>{  // TODO: TESTAR INDIVIDUALMENTE
+  async updateQuantity(products: Product[]): Promise<void>{
     products.forEach(p =>{
       const findIndex = this.products.findIndex(product => p.id === product.id)
 

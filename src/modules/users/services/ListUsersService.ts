@@ -1,5 +1,4 @@
 import { inject, injectable } from "tsyringe";
-import { User } from "../infra/database/entities/User";
 import { IUserRepositories } from "../domain/repositories/IUserRepositories";
 import { IUserPaginate } from "../domain/models/IUserPaginate";
 import RedisCache from "@shared/cache/RedisCache";

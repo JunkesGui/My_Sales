@@ -1,6 +1,5 @@
 import { Order } from "../infra/database/entities/Order";
 import AppError from "@shared/errors/AppError";
-import { ICreateOrder } from "../domain/models/ICreateOrder";
 import { inject, injectable } from "tsyringe";
 import { IOrderRepositories } from "../domain/repositories/IOrderRepositories";;
 import { ICustomerRepositories } from "@modules/customers/domain/repositories/ICustomerRepositories";

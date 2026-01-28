@@ -1,9 +1,8 @@
 import RedisCache from '@shared/cache/RedisCache';
-import { Product } from '../infra/database/entities/Product';
 import { inject, injectable } from 'tsyringe';
 import { IProductPaginate } from '../domain/models/IProductPaginate';
 import { IProductRepositories } from '../domain/repositories/IProductRepositories';
-import { SearchParams } from '@shared/interfaces/SearchParams';
+
 @injectable()
 export default class ListProductService {
   constructor(

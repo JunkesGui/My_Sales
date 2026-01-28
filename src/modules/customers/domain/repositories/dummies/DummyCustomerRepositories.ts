@@ -1,4 +1,3 @@
-import { Pagination } from "@shared/interfaces/Pagination";
 import { SearchParams } from "@shared/interfaces/SearchParams";
 import { ICreateCustomer } from "../../models/ICreateCustomer";
 import { ICustomer } from "../../models/ICustomer";
@@ -37,7 +36,7 @@ export default class DummyCustomerRepositories implements ICustomerRepositories{
     }
   }
 
-  async findAll({page, skip, take}: SearchParams): Promise<ICustomerPaginate> {
+  async findAll({page, take}: SearchParams): Promise<ICustomerPaginate> {
     const customers = this.customers
     const count = this.customers.length
 
@@ -68,7 +67,7 @@ export default class DummyCustomerRepositories implements ICustomerRepositories{
     return customer as Customer | null
   }
 
-  findAndCount(pagination: Pagination): Promise<[ICustomer[], number]> {
+  findAndCount(): Promise<[ICustomer[], number]> {
     throw new AppError('Funcao nao implementada', 400)
   }
 }

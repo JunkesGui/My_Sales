@@ -1,10 +1,7 @@
-import { IPagination } from "@shared/interfaces/pagination.interface";
-import { Customer } from "../infra/database/entities/Customer";
 import { inject, injectable } from "tsyringe";
 import { ICustomerRepositories } from "../domain/repositories/ICustomerRepositories";
 import { ICustomerPaginate } from "../domain/models/ICustomerPaginate";
 import RedisCache from "@shared/cache/RedisCache";
-import { ICustomer } from "../domain/models/ICustomer";
 
 @injectable()
 export default class ListCustomerService{
