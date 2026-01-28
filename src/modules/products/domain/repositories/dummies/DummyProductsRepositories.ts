@@ -74,10 +74,9 @@ export default class DummyProductsRepositories implements IProductRepositories{
     });
   }
 
-  async findAllById(products: IFindProducts[]): Promise<Product[] | null> { // TODO: TESTAR INDIVIDUALMENTE
+  async findAllById(products: IFindProducts[]): Promise<Product[] | null> {
     const prodsIds = products.map(prod => prod.id)
-
-    const foundIds = this.products.filter(p => !prodsIds.includes(p.id))
+    const foundIds = this.products.filter(p => prodsIds.includes(p.id))
 
     return foundIds as Product[] | null
   }

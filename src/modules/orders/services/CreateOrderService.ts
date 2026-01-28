@@ -37,14 +37,6 @@ export default class CreateOrderService{
       throw new AppError('No product was found', 404)
     }
 
-    const productIds = existentProducts.map(product => product.id)
-
-    const checkInexistentProducts = products.filter(product => !productIds.includes(product.id))
-
-    if (checkInexistentProducts.length){
-      throw new AppError(`Product not found`, 404)
-    }
-
     const quantityAvailable = products.filter(product =>
       existentProducts.filter(p => p.id === product.id)[0].quantity < product.quantity
     )
