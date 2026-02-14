@@ -9,7 +9,9 @@ import { AppDataSource } from '@shared/infra/typeorm/data-source';
 import rateLimiter from '@shared/middlewares/RateLimiter';
 import '@shared/containers'
 
-AppDataSource.initialize().then(async() =>{
+const startServer = async () =>{
+  await AppDataSource.initialize()
+
   const app = express();
 
   app.use(cors());
@@ -19,16 +21,19 @@ AppDataSource.initialize().then(async() =>{
   app.use(routes);
   app.use(errors());
   app.use(ErrorHandlerMiddleware.handleError)
-
   console.log('Connected to database')
 
-  app.listen(3333, () =>{
-    console.log('Listening at port 3333')
-  });
+  return app;
+}
 
-
+export default startServer()
+  .then(app =>{
+    return app.listen(3333, () =>{
+      console.log('Listening at port 3333')
+    })
   })
+
   .catch(error =>{
-    console.error('Failed to connect to database: ', error)
+    console.error('Failed to connect to server: ', error)
   })
 
