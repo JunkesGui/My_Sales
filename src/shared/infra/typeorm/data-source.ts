@@ -1,6 +1,6 @@
 require('dotenv/config')
 require('reflect-metadata')
-import { DataSource } from "node_modules/typeorm/index";
+import { DataSource } from "typeorm";
 
 const port = process.env.DB_PORT as number | undefined;
 
