@@ -11,7 +11,7 @@ export default class ShowProfileService{
   async execute({user_id}: IShowProfile): Promise<IUser | null>{
     const user = await this.userRepositories.findById(user_id)
 
-    if(!user_id){
+    if(!user){
       throw new AppError('User not found', 404)
     }
 
